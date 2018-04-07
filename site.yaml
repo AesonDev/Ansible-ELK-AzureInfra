@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: True
+  roles:
+    - { role: vm_elasticsearch,
+          az_node_name: elastic01,            
+          az_vm_size: Standard_D4s_v3,
+          az_private_ip_address: '10.0.3.4' 
+      }
+

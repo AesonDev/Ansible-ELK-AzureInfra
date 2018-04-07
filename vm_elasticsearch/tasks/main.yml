@@ -1,0 +1,36 @@
+---
+- name: Azure Resource group for Elasticsearch node {{ az_node_name }}
+  azure_rm_resourcegroup:
+    name: "rg-{{ az_node_name  }}"
+    location: "{{ az_location  }}"
+
+- name: Private Newtork card
+  azure_rm_networkinterface:
+    name: private01
+    resource_group: "rg-{{ az_node_name }}"
+    virtual_network_name: "{{ az_vnet_name  }}"
+    virtual_network_resource_group: "{{ az_vnet_resourcegroup_name  }}"
+    subnet_name: "{{ az_subnet_name  }}"
+    ip_configurations:
+      - name: ipconfig01
+        primary: True
+        private_ip_allocation-method: Static
+        private_ip_address: "{{ az_private_ip_address}}"        
+
+- name: Azure VM {{ az_node_name }} in Vnet {{ az_vnet_name }} and subnet {{ az_subnet_name }}
+  azure_rm_virtualmachine:
+    resource_group: "rg-{{ az_node_name }}"
+    name: "{{ az_node_name }}"
+    vm_size: "{{ az_vm_size }}"
+    admin_username: ansible
+    ssh_password_enabled: false
+    ssh_public_keys:
+       - path: "{{ az_authorizedkey_path}}"
+         key_data: "{{ az_publickey_data }}"
+    image:
+      offer: CentOS
+      publisher: OpenLogic
+      sku: '7.4'
+      version: latest
+    network_interface_names: "private01"
+    tags: "mytag=myvale"

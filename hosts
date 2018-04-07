@@ -1,0 +1,11 @@
+[all]
+localhost ansible_connection=local
+
+[all:vars]
+az_location=westeurope
+az_subnet_name=Lab
+az_vnet_name=FlxDevOpsLab-VLAN
+az_vnet_resourcegroup_name=FlxDevOpsLab-VLAN
+az_authorizedkey_path=/home/ansible/.ssh/authorized_keys
+az_publickey_data=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgnow6EsVN5oSvB1B4pG1OvJ13WtpbmmN8S0PDC4FF3gW+1B/Ek+Hd8WkRbeGNhuHW219QN/W8w01Z2uq3o5MCBgalXD+55zaRk0GBGFisXsm5VMc1/NTUlt1SnV3M/4BU9KKDgnohf+NTbeQQMaBd1PVnvEMwBv6/5541rrfqEpRMdN8rc+WXOOjYMm3YbKAbX0qqJgmUTDuJkRbfyuQyWXJTFt7rPu4olr47v0Y+zaqpUaEmY1yU5XZCMeiJIMSfBXJ7rHUS4toz9LSuSOD6dzPWZKvpzOp5kDoL/UoXHxPA7IkXK4TgHmmvdUdZx6Zq18zDLxzAjRhdSXBuT5+n
+
